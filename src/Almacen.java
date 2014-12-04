@@ -5,8 +5,11 @@ public class Almacen {
 
 	public static void main (String args[]) {
 
+<<<<<<< HEAD
 		ArrayList <Distribuidor> arrayDistribuidor = new ArrayList <Distribuidor> ();
 
+=======
+>>>>>>> 0f079e1b59faf0349cc191fca26bce66f9a41178
 		try {
 
 			BufferedReader br = new BufferedReader(new FileReader("distribuidores.txt"));
@@ -16,7 +19,11 @@ public class Almacen {
 			// Creamos un array de tipo String para separar los campos del fichero
 			String [] camposSeparados = null;
 
+<<<<<<< HEAD
 			//ArrayList <Distribuidor> arrayDistribuidor = new ArrayList <Distribuidor> ();
+=======
+			ArrayList <Distribuidor> arrayDistribuidor = new ArrayList <Distribuidor> ();
+>>>>>>> 0f079e1b59faf0349cc191fca26bce66f9a41178
 
 			while (linea != null) {
 
@@ -64,7 +71,10 @@ public class Almacen {
 			for(int i=0; i<arrayDistribuidor.size(); i++) {
 
 				System.out.println();
+<<<<<<< HEAD
 				System.out.println("      ------ DATOS DISTRIBUIDOR " + (i+1) + " ------ \n");
+=======
+>>>>>>> 0f079e1b59faf0349cc191fca26bce66f9a41178
 
 				System.out.println("Nombre Distribuidor: " + arrayDistribuidor.get(i).getNombre());
 				System.out.println("C.I.F.: " + arrayDistribuidor.get(i).getCif());
@@ -95,6 +105,7 @@ public class Almacen {
 		} catch(IOException e) {
 			System.out.println("Error E/S: "+e);
 		}
+<<<<<<< HEAD
 
 		// ---------------- 3.12 ----------------
 
@@ -352,5 +363,7 @@ public class Almacen {
 			System.out.println("--------------------------------");
 			System.out.print("");
 		}
+=======
+>>>>>>> 0f079e1b59faf0349cc191fca26bce66f9a41178
 	}
 }
