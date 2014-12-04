@@ -43,7 +43,7 @@ public class Lechuga {
 		this.eurosUnidad = eurounidad;
 	}
 
-	public Double getEurosKilo () {
+	public Double getEurosUnidad () {
 
 		return eurosUnidad;
 	}

@@ -1,0 +1,4 @@
+uno, Q8537427J, Espanya, Barcelona, Barcelona, calle2, 6, R, 16666, 09757058K, Matias, Hernandez, 21, Espanyola, 06/06/1993, H, 924115566, aa@gmail.com
+dos, W2637246F, Italia, Napoles, Napoles, calle6, 2, I, 02333, 63948192G, Fabian, Rodriguez, 30, Italiana, 15/11/1984, H, 621779245, ss@gmail.com
+tres, E41788845, Espanya, Sevilla, Sevilla, calle7, 1, O, 72589, 97304129F, Tiburcio, Roawl, 88, Kazajo, 31/10/1926, H, 145895315, dd@gmail.com
+cuatro, U6624079G, Italia, Roma, Roma, calle9, 7, A, 02987, 31010107N, Filippo, Sabella, 26, Italiana, 20/09/1988, H, 632089106, ff@gmail.com

@@ -32,7 +32,7 @@ public class Leche {
 		this.eurosLitro = eurolitros;
 	}
 
-	public Double getEurosKilo () {
+	public Double getEurosLitro () {
 
 		return eurosLitro;
 	}
