@@ -1,0 +1,4 @@
+Ruben, Alvarez, 66666666R, Espanya, Donostia, Donostia, calle6, 6, R, 66666, 6, 100
+Matias, Fernandez, 22222222M, Espanya, Barcelona, Barcelona, calle2, 2, M, 16666, 7, 10
+Raquel, Gonzalez, 11111111G, Espanya, Donostia, Donostia, calle9, 9, G, 66555, 8, 25
+Ana, Idiakez, 77777777A, Espanya, Sevilla, Sevilla, calle7, 7, A, 15472, 9, 15

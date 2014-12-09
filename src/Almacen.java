@@ -25,9 +25,8 @@ public class Almacen {
 				Direccion direccion = new Direccion ();
 				Contacto contacto = new Contacto ();
 
+				// Separamos las lineas obtenidas (linea) mediante ", " y lo guardamos en "camposSeparados"
 				camposSeparados = linea.split(", ");
-
-				//introducimos los valores en los objetos para despues añadirlos al ArrayList
 
 				// Introducimos los valores capturados del fichero en los objetos creados
 				distribuidor.setNombre(camposSeparados[0]);
@@ -137,7 +136,7 @@ public class Almacen {
 				// Si el nombre del distribuidor introducido coincide con uno del arraylist (distribuidores.txt)
 				if (distribuidorm.equalsIgnoreCase(arrayDistribuidor.get(q).getNombre())) {
 
-					//le asignamos el valor del distribuidor al objeto manzana
+					// Asignamos el valor del distribuidor al objeto manzana
 					manzana.setDistribuidor(arrayDistribuidor.get(q));
 				}
 			}
@@ -151,16 +150,16 @@ public class Almacen {
 		for(int mm=0; mm<arrayManzana.size(); mm++) {
 
 			System.out.println();
-			System.out.println("      ------ DATOS MANZANA " + (mm+1) +" Y DISTRIBUIDOR ------ \n");
+			System.out.println("      ------ DATOS MANZANA " + (mm+1) + " Y DISTRIBUIDOR ------ \n");
 
-			System.out.println("Tipo de manzana: "+arrayManzana.get(mm).getTipoManzana() );
-            System.out.println("Procedencia: "+arrayManzana.get(mm).getProcedencia());
-            System.out.println("Color : "+arrayManzana.get(mm).getColor() );
-            System.out.println("Euros Kilo: "+arrayManzana.get(mm).getEurosKilo());
+			System.out.println("Tipo de manzana: " + arrayManzana.get(mm).getTipoManzana() );
+            System.out.println("Procedencia: " + arrayManzana.get(mm).getProcedencia());
+            System.out.println("Color : " + arrayManzana.get(mm).getColor() );
+            System.out.println("Euros Kilo: " + arrayManzana.get(mm).getEurosKilo());
 
             System.out.println();
 
-            // // Manzana.java (Distribuidor) -- Distribuidor.java (Nombre)
+            // Manzana.java (Distribuidor) -- Distribuidor.java (Nombre)
 			System.out.println("Nombre Distribuidor: " + arrayManzana.get(mm).getDistribuidor().getNombre());
 			System.out.println("C.I.F.: " + arrayManzana.get(mm).getDistribuidor().getCif());
 
@@ -221,12 +220,15 @@ public class Almacen {
 
 			for (int q=0; q<arrayDistribuidor.size(); q++) {
 
+				// Si el nombre del distribuidor introducido coincide con uno del arraylist (distribuidores.txt)
 				if (distribuidorl.equalsIgnoreCase(arrayDistribuidor.get(q).getNombre())) {
 
+					// Asignamos el valor del distribuidor al objeto lechuga
 					lechuga.setDistribuidor(arrayDistribuidor.get(q));
 				}
 			}
 
+			// Añadimos el objeto "lechuga" al ArrayList "arrayLechuga"
 			arrayLechuga.add(lechuga);
 
 			System.out.println();
@@ -235,12 +237,12 @@ public class Almacen {
 		for(int ll=0; ll<arrayLechuga.size(); ll++) {
 
 			System.out.println();
-			System.out.println("      ------ DATOS LECHUGA " + (ll+1) +" Y DISTRIBUIDOR ------ \n");
+			System.out.println("      ------ DATOS LECHUGA " + (ll+1) + " Y DISTRIBUIDOR ------ \n");
 
-			System.out.println("Tipo de lechuga: "+arrayLechuga.get(ll).getTipoLechuga() );
-            System.out.println("Procedencia: "+arrayLechuga.get(ll).getProcedencia());
-            System.out.println("Color : "+arrayLechuga.get(ll).getColor() );
-            System.out.println("Euros Unidad: "+arrayLechuga.get(ll).getEurosUnidad());
+			System.out.println("Tipo de lechuga: " + arrayLechuga.get(ll).getTipoLechuga() );
+            System.out.println("Procedencia: " + arrayLechuga.get(ll).getProcedencia());
+            System.out.println("Color : " + arrayLechuga.get(ll).getColor() );
+            System.out.println("Euros Unidad: " + arrayLechuga.get(ll).getEurosUnidad());
 
             System.out.println();
 
@@ -302,12 +304,15 @@ public class Almacen {
 
 			for (int q=0; q<arrayDistribuidor.size(); q++) {
 
+				// Si el nombre del distribuidor introducido coincide con uno del arraylist (distribuidores.txt)
 				if (distribuidorle.equalsIgnoreCase(arrayDistribuidor.get(q).getNombre())) {
 
+					// Asignamos el valor del distribuidor al objeto leche
 					leche.setDistribuidor(arrayDistribuidor.get(q));
 				}
 			}
 
+			// Añadimos el objeto "leche" al ArrayList "arrayLeche"
 			arrayLeche.add(leche);
 
 			System.out.println();
@@ -316,11 +321,11 @@ public class Almacen {
 		for (int lee=0; lee<arrayLeche.size(); lee++) {
 
 			System.out.println();
-			System.out.println("      ------ DATOS LECHE " + (lee+1) +" Y DISTRIBUIDOR ------ \n");
+			System.out.println("      ------ DATOS LECHE " + (lee+1) + " Y DISTRIBUIDOR ------ \n");
 
-			System.out.println("Tipo de leche: "+arrayLeche.get(lee).getTipo() );
-            System.out.println("Procedencia: "+arrayLeche.get(lee).getProcedencia());
-            System.out.println("Euros Unidad: "+arrayLeche.get(lee).getEurosLitro());
+			System.out.println("Tipo de leche: " + arrayLeche.get(lee).getTipo() );
+            System.out.println("Procedencia: " + arrayLeche.get(lee).getProcedencia());
+            System.out.println("Euros Unidad: " + arrayLeche.get(lee).getEurosLitro());
 
             System.out.println();
 
@@ -351,6 +356,82 @@ public class Almacen {
 			System.out.println("   E-mail: " + arrayLeche.get(lee).getDistribuidor().getPersonaContacto().getEmail());
 			System.out.println("--------------------------------");
 			System.out.print("");
+		}
+
+		// ---------------- 3.13 ----------------
+
+		ArrayList <Cliente> arrayCliente = new ArrayList <Cliente> ();
+
+		try {
+
+			BufferedReader br2 = new BufferedReader(new FileReader("clientes.txt"));
+
+			String linea2 = br2.readLine();
+
+			// Creamos un array de tipo String para separar los campos del fichero
+			String [] camposSeparados2 = null;
+
+			while (linea2 != null) {
+
+				// Creamos los objetos que participan en el fichero "clientes.txt"
+				Cliente cliente = new Cliente ();
+				Direccion direccion2 = new Direccion ();
+
+				// Separamos las lineas obtenidas (linea2) mediante ", " y lo guardamos en "camposSeparados2"
+				camposSeparados2 = linea2.split(", ");
+
+				// Introducimos los valores capturados del fichero en los objetos creados
+				cliente.setNombre(camposSeparados2[0]);
+				cliente.setApellidos(camposSeparados2[1]);
+				cliente.setDni(camposSeparados2[2]);
+
+				direccion2.setPais(camposSeparados2[3]);
+				direccion2.setProvincia(camposSeparados2[4]);
+				direccion2.setCiudad(camposSeparados2[5]);
+				direccion2.setCalle(camposSeparados2[6]);
+				direccion2.setPiso(Integer.parseInt(camposSeparados2[7]));
+				direccion2.setLetra(camposSeparados2[8].charAt(0));
+				direccion2.setCodigoPostal(Integer.parseInt(camposSeparados2[9]));
+
+				cliente.setNumSocio(Double.parseDouble(camposSeparados2[10]));
+				cliente.setDescuento(Double.parseDouble(camposSeparados2[11]));
+
+				// Introducimos los valores(objetos) de "direccion2" en "cliente"
+				cliente.setDireccion(direccion2);
+
+				// Añadimos el objeto "cliente" al ArrayList "arrayCliente"
+				arrayCliente.add(cliente);
+
+				linea2 = br2.readLine();
+			}
+
+			for(int c=0; c<arrayCliente.size(); c++) {
+
+				System.out.println();
+				System.out.println("      ------ DATOS CLIENTE " + (c+1) + " ------ \n");
+
+				System.out.println("Nombre Cliente: " + arrayCliente.get(c).getNombre());
+				System.out.println("Apellido Cliente: " + arrayCliente.get(c).getApellidos());
+				System.out.println("DNI: " + arrayCliente.get(c).getDni());
+
+				System.out.println("Dirección: ");
+				// Cliente.java (Direccion) -- Direccion.java (Pais)
+				System.out.println("   País: " + arrayCliente.get(c).getDireccion().getPais());
+				System.out.println("   Provincia: " + arrayCliente.get(c).getDireccion().getProvincia());
+				System.out.println("   Ciudad: " + arrayCliente.get(c).getDireccion().getCiudad());
+				System.out.println("   Calle: " + arrayCliente.get(c).getDireccion().getCalle());
+				System.out.println("   Piso: " + arrayCliente.get(c).getDireccion().getPiso());
+				System.out.println("   Letra: " + arrayCliente.get(c).getDireccion().getLetra());
+				System.out.println("   Código Postal: " + arrayCliente.get(c).getDireccion().getCodigoPostal());
+
+				System.out.println("Número de Socio: " + arrayCliente.get(c).getNumSocio());
+				System.out.println("Descuento: " + arrayCliente.get(c).getDescuento() + "%");
+				System.out.println("--------------------------------");
+				System.out.print("");
+			}
+
+		} catch(IOException e) {
+			System.out.println("Error E/S: "+e);
 		}
 	}
 }
