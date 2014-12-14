@@ -5,6 +5,7 @@ public class Leche {
 	private String procedencia;
 	private Double eurosLitro;
 	private Distribuidor distribuidor;
+	private int codigoBarras;
 
 	//métodos getter y setter
 	public void setTipo (String tipo) {
@@ -45,5 +46,15 @@ public class Leche {
 	public Distribuidor getDistribuidor () {
 
 		return distribuidor;
+	}
+
+	public void setCodigoBarras (int codbarras) {
+
+		this.codigoBarras = codbarras;
+	}
+
+	public int getCodigoBarras () {
+
+		return codigoBarras;
 	}
 }

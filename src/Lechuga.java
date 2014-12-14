@@ -6,6 +6,7 @@ public class Lechuga {
 	private String color;
 	private Double eurosUnidad;
 	private Distribuidor distribuidor;
+	private int codigoBarras;	
 
 	//métodos getter y setter
 	public void setTipoLechuga (String lechuga) {
@@ -58,4 +59,13 @@ public class Lechuga {
 		return distribuidor;
 	}
 
+	public void setCodigoBarras (int codbarras) {
+
+		this.codigoBarras = codbarras;
+	}
+
+	public int getCodigoBarras () {
+
+		return codigoBarras;
+	}
 }
