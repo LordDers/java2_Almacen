@@ -479,12 +479,16 @@ public class Almacen {
 
 				System.out.println("\n      ------ CESTA ------ \n");
 
+				// Variable para calcular el descuento
 				double descuentocliente = 0.0;
 
+				// Variable para saber si quiere pedir más productos
 				char mas = 's';
 
-				boolean numsocio = false;
+				// Variable para comprobar si existe el número de socio
+				boolean numsocio = false; 
 
+				// Bucle para comprobar si el número de socio introducido es correcto
 				do {
 
 					System.out.print("Introduce el número de socio: ");
@@ -501,8 +505,8 @@ public class Almacen {
 							System.out.println("DNI: " + arrayCliente.get(cli).getDni());
 							System.out.println("Numero Socio: " + arrayCliente.get(cli).getNumSocio());
 
+							// Asignamos a la variable "numsocio" el valor "true" para terminar el bucle, el número de socio coincide
 							numsocio = true;
-							//System.out.print("Si es: " + numsocio);
 
 							// Asignamos a la variable "descuentocliente" el descuento que tiene
 							descuentocliente = arrayCliente.get(cli).getDescuento();
@@ -510,9 +514,8 @@ public class Almacen {
 						}
 						else {
 
+							// Asignamos a la variable "numsocio" el valor "false" para seguir en el bucle, puesto que no existe el número de socio
 							numsocio = false;
-							//System.out.print("No es: " + numsocio);
-							
 						}
 					}
 				} while (numsocio == false);
@@ -528,9 +531,16 @@ public class Almacen {
 					System.out.println("\nIntroduce el código de barras a pedir: ");
 					int codbarrasp = sc.nextInt();
 
+					// Variable para saber la cantidad del producto pedido
 					int cantidad = 0;
+
+					// Variable para asignar el valor del producto
 					double euro = 0.0;
+
+					// Variable para asignar el valor del producto por la cantidad
 					double total = 0.0;
+
+					// Variables para saber el tipo del producto
 					String tipomanzana = null;
 					String tipolechuga = null;
 					String tipoleche = null;
@@ -554,7 +564,6 @@ public class Almacen {
 							// Creamos los objetos que participan en el fichero "productos.txt"
 							Distribuidor distribuidorCesta = new Distribuidor ();
 							Direccion direccionCesta = new Direccion ();
-							//Contacto contactoCesta = new Contacto ();
 
 							// Separamos las lineas obtenidas (linea3) mediante ", " y lo guardamos en "camposSeparados3"
 							camposSeparados3 = linea3.split(", ");
@@ -620,6 +629,7 @@ public class Almacen {
 
 									for (int mc=0; mc<arrayManzanaCesta.size(); mc++) {
 
+										// Mostramos los datos de lo pedido con el descuento
 										System.out.println(" ------ Has pedido ------");
 										System.out.println("Tipo Manzana: " + arrayManzanaCesta.get(mc).getTipoManzana());
 										System.out.println("Distribuidor: " + arrayManzanaCesta.get(mc).getDistribuidor().getNombre());
@@ -640,7 +650,7 @@ public class Almacen {
 
 									System.out.println();
 
-									// Enviamos valores recogidos del fichero "productos.txt" a cada objeto "manzanaCesta", "distribuidorCesta" y "direccionCesta"
+									// Enviamos valores recogidos del fichero "productos.txt" a cada objeto "lechugaCesta", "distribuidorCesta" y "direccionCesta"
 									lechugaCesta.setTipoLechuga(camposSeparados3[2]);
 									lechugaCesta.setProcedencia(camposSeparados3[3]);
 									lechugaCesta.setColor(camposSeparados3[4]);
@@ -690,6 +700,7 @@ public class Almacen {
 
 									for (int mc=0; mc<arrayLechugaCesta.size(); mc++) {
 
+										// Mostramos los datos de lo pedido con el descuento
 										System.out.println(" ------ Has pedido ------");
 										System.out.println("Tipo Lechuga: " + arrayLechugaCesta.get(mc).getTipoLechuga());
 										System.out.println("Distribuidor: " + arrayLechugaCesta.get(mc).getDistribuidor().getNombre());
@@ -710,7 +721,7 @@ public class Almacen {
 
 									System.out.println();
 
-									// Enviamos valores recogidos del fichero "productos.txt" a cada objeto "manzanaCesta", "distribuidorCesta" y "direccionCesta"
+									// Enviamos valores recogidos del fichero "productos.txt" a cada objeto "lecheCesta", "distribuidorCesta" y "direccionCesta"
 									lecheCesta.setTipo(camposSeparados3[2]);
 									lecheCesta.setProcedencia(camposSeparados3[3]);
 									lecheCesta.setEurosLitro(Double.parseDouble(camposSeparados3[4]));
@@ -758,6 +769,7 @@ public class Almacen {
 
 									for (int mc=0; mc<arrayLecheCesta.size(); mc++) {
 
+										// Mostramos los datos de lo pedido con el descuento
 										System.out.println(" ------ Has pedido ------");
 										System.out.println("Tipo Leche: " + arrayLecheCesta.get(mc).getTipo());
 										System.out.println("Distribuidor: " + arrayLecheCesta.get(mc).getDistribuidor().getNombre());
