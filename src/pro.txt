@@ -1,4 +1,0 @@
-Manzana1, Barcelona, Verde, 2.5, uno, Q8537427J, Espanya, Barcelona, Barcelona, calle2, 6, R, 16666, 0001
-Manzana2, Barcelona, Verde, 3.0, uno, Q8537427J, Espanya, Barcelona, Barcelona, calle2, 6, R, 16666, 0002
-Lechuga1, Napoles, Verde, 3.5, dos, W2637246F, Italia, Napoles, Napoles, calle6, 2, I, 02333, 1001
-Lechuga2, Napoles, Verde, 4.0, dos, W2637246F, Italia, Napoles, Napoles, calle6, 2, I, 02333, 1002

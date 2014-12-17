@@ -479,44 +479,70 @@ public class Almacen {
 
 				System.out.println("\n      ------ CESTA ------ \n");
 
-				System.out.print("Introduce el número de socio: ");
-				int numeroSocio = sc.nextInt();
-
 				double descuentocliente = 0.0;
 
 				char mas = 's';
 
-				for (int cli=0; cli<arrayCliente.size(); cli++) {
+				boolean numsocio = false;
 
-					// Si el numero de socio introducido coincide con uno del arraylist (clientes.txt)
-					if (numeroSocio == (arrayCliente.get(cli).getNumSocio())) {
+				do {
 
-						// Mostramos los datos del cliente
-						System.out.println("Nombre: " + arrayCliente.get(cli).getNombre());
-						System.out.println("Apellido: " + arrayCliente.get(cli).getApellidos());
-						System.out.println("DNI: " + arrayCliente.get(cli).getDni());
-						System.out.println("Numero Socio: " + arrayCliente.get(cli).getNumSocio());
+					System.out.print("Introduce el número de socio: ");
+					int numeroSocio = sc.nextInt();
 
-						// Asignamos a la variable "descuentocliente" el descuento que tiene
-						descuentocliente = arrayCliente.get(cli).getDescuento();
+					for (int cli=0; cli<arrayCliente.size(); cli++) {
+
+						// Si el numero de socio introducido coincide con uno del arraylist (clientes.txt)
+						if (numeroSocio == (arrayCliente.get(cli).getNumSocio())) {
+
+							// Mostramos los datos del cliente
+							System.out.println("Nombre: " + arrayCliente.get(cli).getNombre());
+							System.out.println("Apellido: " + arrayCliente.get(cli).getApellidos());
+							System.out.println("DNI: " + arrayCliente.get(cli).getDni());
+							System.out.println("Numero Socio: " + arrayCliente.get(cli).getNumSocio());
+
+							numsocio = true;
+							//System.out.print("Si es: " + numsocio);
+
+							// Asignamos a la variable "descuentocliente" el descuento que tiene
+							descuentocliente = arrayCliente.get(cli).getDescuento();
+							break;
+						}
+						else {
+
+							numsocio = false;
+							//System.out.print("No es: " + numsocio);
+							
+						}
 					}
-				}
+				} while (numsocio == false);
 
 				System.out.println();
 
 				// Bucle para ver si quiere pedir mas, en caso de pulsar 'n', sale
 				do {
 
-					System.out.println("Introduce el código de barras a pedir: ");
+					System.out.println("Introduce el producto a pedir, Manzana, Lechuga o Leche: ");
+					String productopedir = sc.next();
+
+					System.out.println("\nIntroduce el código de barras a pedir: ");
 					int codbarrasp = sc.nextInt();
 
 					int cantidad = 0;
 					double euro = 0.0;
+					double total = 0.0;
+					String tipomanzana = null;
+					String tipolechuga = null;
+					String tipoleche = null;
+
+					ArrayList <Manzana> arrayManzanaCesta = new ArrayList <Manzana> ();
+					ArrayList <Lechuga> arrayLechugaCesta = new ArrayList <Lechuga> ();
+					ArrayList <Leche> arrayLecheCesta = new ArrayList <Leche> ();
 			
 					try {
 
 						// Leemos "pro.txt"
-						BufferedReader br3 = new BufferedReader(new FileReader("pro.txt"));
+						BufferedReader br3 = new BufferedReader(new FileReader("productos.txt"));
 
 						String linea3 = br3.readLine();
 
@@ -525,43 +551,231 @@ public class Almacen {
 
 						while (linea3 != null) {
 
+							// Creamos los objetos que participan en el fichero "productos.txt"
+							Distribuidor distribuidorCesta = new Distribuidor ();
+							Direccion direccionCesta = new Direccion ();
+							//Contacto contactoCesta = new Contacto ();
+
 							// Separamos las lineas obtenidas (linea3) mediante ", " y lo guardamos en "camposSeparados3"
 							camposSeparados3 = linea3.split(", ");
 
 							// Comprobamos si el codigo de barras introducido coincide con uno del fichero "pro.txt"
-							if (codbarrasp == Integer.parseInt(camposSeparados3[13])) {
+							if (codbarrasp == Integer.parseInt(camposSeparados3[1])) {
 
-								System.out.println();
-								// Mostramos los datos del producto introducido 
-								System.out.println("Tipo Manzana: " + camposSeparados3[0]);
-								System.out.println("Procedencia: " + camposSeparados3[1]);
-								System.out.println("Color: " + camposSeparados3[2]);
-								System.out.println("Euros Unidad: " + camposSeparados3[3]);
+								// Comprobamos si el producto es igual al producto a pedir (Manzana)
+								if ((camposSeparados3[0].equalsIgnoreCase(productopedir)) && productopedir.equalsIgnoreCase("Manzana")) {
 
-								// Asignamos a la variable "euro" el valor que vale dicho producto
-								euro = Double.parseDouble(camposSeparados3[3]);
+									// Creamos el objeto "manzanaCesta"
+									Manzana manzanaCesta = new Manzana ();
 
-								System.out.print("\n¿Cuántas deseas pedir? ");
-								cantidad = sc.nextInt();
+									System.out.println();
+
+									// Enviamos valores recogidos del fichero "productos.txt" a cada objeto "manzanaCesta", "distribuidorCesta" y "direccionCesta"
+									manzanaCesta.setTipoManzana(camposSeparados3[2]);
+									manzanaCesta.setProcedencia(camposSeparados3[3]);
+									manzanaCesta.setColor(camposSeparados3[4]);
+									manzanaCesta.setEurosKilo(Double.parseDouble(camposSeparados3[5]));
+
+									distribuidorCesta.setNombre(camposSeparados3[6]);
+									distribuidorCesta.setCif(camposSeparados3[7]);
+
+									direccionCesta.setPais(camposSeparados3[8]);
+									direccionCesta.setProvincia(camposSeparados3[9]);
+									direccionCesta.setCiudad(camposSeparados3[10]);		
+									direccionCesta.setCalle(camposSeparados3[11]);
+									direccionCesta.setPiso(Integer.parseInt(camposSeparados3[12]));
+									direccionCesta.setLetra(camposSeparados3[13].charAt(0));
+									direccionCesta.setCodigoPostal(Integer.parseInt(camposSeparados3[14]));
+
+									manzanaCesta.setCodigoBarras(Integer.parseInt(camposSeparados3[1]));
+
+									// Mostramos la información respecto al producto introducido a través del código de barras
+									System.out.println(" ------ Datos del producto deseado ------");
+									System.out.println("Tipo Manzana: " + manzanaCesta.getTipoManzana());
+									// Asignamos en "tipomanzana" el valor del tipo de manzana recogido del objeto
+									tipomanzana = manzanaCesta.getTipoManzana();
+									System.out.println("Procedencia: " + manzanaCesta.getProcedencia());
+									System.out.println("Color: " + manzanaCesta.getColor());
+									System.out.println("Euros Unidad: " + manzanaCesta.getEurosKilo());
+
+									// Asignamos a la variable "euro" el valor que vale dicho producto
+									euro = manzanaCesta.getEurosKilo();
+
+									System.out.print("\n¿Cuántas deseas pedir? ");
+									cantidad = sc.nextInt();
+
+									System.out.println();
+
+									// Asignamos a la variable "total" la multiplicación de la cantidad deseada por lo que vale
+									total = (cantidad * euro);
+
+									// Enviamos al objeto "cesta" los valores "euro" y "descuentocliente" para calcular el importe
+									cesta.setImporteCompra(total, descuentocliente);
+
+									// Introducimos los valores(objetos) de "distribuidorCesta"  en "manzanaCesta"
+									manzanaCesta.setDistribuidor(distribuidorCesta);
+
+									// Añadimos el objeto "manzanaCesta" al ArrayList "arrayManzanaCesta"
+									arrayManzanaCesta.add(manzanaCesta);
+
+									for (int mc=0; mc<arrayManzanaCesta.size(); mc++) {
+
+										System.out.println(" ------ Has pedido ------");
+										System.out.println("Tipo Manzana: " + arrayManzanaCesta.get(mc).getTipoManzana());
+										System.out.println("Distribuidor: " + arrayManzanaCesta.get(mc).getDistribuidor().getNombre());
+										System.out.println("Cantidad pedida: " + cantidad);
+										System.out.println("Euro por Unidad: " + arrayManzanaCesta.get(mc).getEurosKilo() + "€");
+										System.out.println("Total: " + total + "€");
+										System.out.println("Descuento: " + descuentocliente + "%");
+										// Recogemos el importe a pagar "cesta.getImporteCompra()"
+										System.out.println("Total a pagar por " + tipomanzana + ": " + cesta.getImporteCompra() + "€");
+									}
+								}
+
+								// Comprobamos si el producto es igual al producto a pedir (Lechuga)
+								else if ((camposSeparados3[0].equalsIgnoreCase(productopedir)) && productopedir.equalsIgnoreCase("Lechuga")) {
+
+									// Creamos el objeto "lehugaCesta"
+									Lechuga lechugaCesta = new Lechuga ();
+
+									System.out.println();
+
+									// Enviamos valores recogidos del fichero "productos.txt" a cada objeto "manzanaCesta", "distribuidorCesta" y "direccionCesta"
+									lechugaCesta.setTipoLechuga(camposSeparados3[2]);
+									lechugaCesta.setProcedencia(camposSeparados3[3]);
+									lechugaCesta.setColor(camposSeparados3[4]);
+									lechugaCesta.setEurosUnidad(Double.parseDouble(camposSeparados3[5]));
+
+									distribuidorCesta.setNombre(camposSeparados3[6]);
+									distribuidorCesta.setCif(camposSeparados3[7]);
+
+									direccionCesta.setPais(camposSeparados3[8]);
+									direccionCesta.setProvincia(camposSeparados3[9]);
+									direccionCesta.setCiudad(camposSeparados3[10]);		
+									direccionCesta.setCalle(camposSeparados3[11]);
+									direccionCesta.setPiso(Integer.parseInt(camposSeparados3[12]));
+									direccionCesta.setLetra(camposSeparados3[13].charAt(0));
+									direccionCesta.setCodigoPostal(Integer.parseInt(camposSeparados3[14]));
+
+									lechugaCesta.setCodigoBarras(Integer.parseInt(camposSeparados3[1]));
+
+									// Mostramos la información respecto al producto introducido a través del código de barras
+									System.out.println(" ------ Datos del producto deseado ------");
+									System.out.println("Tipo Lechuga: " + lechugaCesta.getTipoLechuga());
+									// Guardamos en "tipolechuga"  el valor del tipo de lechuga recogido del objeto
+									tipolechuga = lechugaCesta.getTipoLechuga();
+									System.out.println("Procedencia: " + lechugaCesta.getProcedencia());
+									System.out.println("Color: " + lechugaCesta.getColor());
+									System.out.println("Euros Unidad: " + lechugaCesta.getEurosUnidad());
+
+									// Asignamos a la variable "euro" el valor que vale dicho producto
+									euro = lechugaCesta.getEurosUnidad();
+
+									System.out.print("\n¿Cuántas deseas pedir? ");
+									cantidad = sc.nextInt();
+
+									System.out.println();
+
+									// Asignamos a la variable "total" la multiplicación de la cantidad deseada por lo que vale
+									total = (cantidad * euro);
+
+									// Enviamos al objeto "cesta" los valores "euro" y "descuentocliente" para calcular el importe
+									cesta.setImporteCompra(total, descuentocliente);
+
+									// Introducimos los valores(objetos) de "distribuidorCesta"  en "lechugaCesta"
+									lechugaCesta.setDistribuidor(distribuidorCesta);
+
+									// Añadimos el objeto "lechugaCesta" al ArrayList "arrayLechugaCesta"
+									arrayLechugaCesta.add(lechugaCesta);
+
+									for (int mc=0; mc<arrayLechugaCesta.size(); mc++) {
+
+										System.out.println(" ------ Has pedido ------");
+										System.out.println("Tipo Lechuga: " + arrayLechugaCesta.get(mc).getTipoLechuga());
+										System.out.println("Distribuidor: " + arrayLechugaCesta.get(mc).getDistribuidor().getNombre());
+										System.out.println("Cantidad pedida: " + cantidad);
+										System.out.println("Euro por Unidad: " + arrayLechugaCesta.get(mc).getEurosUnidad() + "€");
+										System.out.println("Total: " + total + "€");
+										System.out.println("Descuento: " + descuentocliente + "%");
+										// Recogemos el importe a pagar "cesta.getImporteCompra()"
+										System.out.println("Total a pagar por " + tipolechuga + ": " + cesta.getImporteCompra() + "€");
+									}
+								}
+
+								// Comprobamos si el producto es igual al producto a pedir (Leche)
+								else if ((camposSeparados3[0].equalsIgnoreCase(productopedir)) && productopedir.equalsIgnoreCase("Leche")) {
+
+									// Creamos el objeto "manzanaCesta"
+									Leche lecheCesta = new Leche ();
+
+									System.out.println();
+
+									// Enviamos valores recogidos del fichero "productos.txt" a cada objeto "manzanaCesta", "distribuidorCesta" y "direccionCesta"
+									lecheCesta.setTipo(camposSeparados3[2]);
+									lecheCesta.setProcedencia(camposSeparados3[3]);
+									lecheCesta.setEurosLitro(Double.parseDouble(camposSeparados3[4]));
+
+									distribuidorCesta.setNombre(camposSeparados3[5]);
+									distribuidorCesta.setCif(camposSeparados3[6]);
+
+									direccionCesta.setPais(camposSeparados3[7]);
+									direccionCesta.setProvincia(camposSeparados3[8]);
+									direccionCesta.setCiudad(camposSeparados3[9]);		
+									direccionCesta.setCalle(camposSeparados3[10]);
+									direccionCesta.setPiso(Integer.parseInt(camposSeparados3[11]));
+									direccionCesta.setLetra(camposSeparados3[12].charAt(0));
+									direccionCesta.setCodigoPostal(Integer.parseInt(camposSeparados3[13]));
+
+									lecheCesta.setCodigoBarras(Integer.parseInt(camposSeparados3[1]));
+
+									// Mostramos la información respecto al producto introducido a través del código de barras
+									System.out.println(" ------ Datos del producto deseado ------");
+									System.out.println("Tipo Leche: " + lecheCesta.getTipo());
+									// Guardamos en "tipoleche" el valor del tipo de lechuga recogido del objeto
+									tipoleche = lecheCesta.getTipo();
+									System.out.println("Procedencia: " + lecheCesta.getProcedencia());
+									System.out.println("Euros Litro: " + lecheCesta.getEurosLitro());
+
+									// Asignamos a la variable "euro" el valor que vale dicho producto
+									euro = lecheCesta.getEurosLitro();
+
+									System.out.print("\n¿Cuántas deseas pedir? ");
+									cantidad = sc.nextInt();
+
+									System.out.println();
+
+									// Asignamos a la variable "total" la multiplicación de la cantidad deseada por lo que vale
+									total = (cantidad * euro);
+
+									// Enviamos al objeto "cesta" los valores "euro" y "descuentocliente" para calcular el importe
+									cesta.setImporteCompra(total, descuentocliente);
+
+									// Introducimos los valores(objetos) de "distribuidorCesta"  en "lecheCesta"
+									lecheCesta.setDistribuidor(distribuidorCesta);
+
+									// Añadimos el objeto "lecheCesta" al ArrayList "arrayLecheCesta"
+									arrayLecheCesta.add(lecheCesta);
+
+									for (int mc=0; mc<arrayLecheCesta.size(); mc++) {
+
+										System.out.println(" ------ Has pedido ------");
+										System.out.println("Tipo Leche: " + arrayLecheCesta.get(mc).getTipo());
+										System.out.println("Distribuidor: " + arrayLecheCesta.get(mc).getDistribuidor().getNombre());
+										System.out.println("Cantidad pedida: " + cantidad);
+										System.out.println("Euro por Litro: " + arrayLecheCesta.get(mc).getEurosLitro() + "€");
+										System.out.println("Total: " + total + "€");
+										System.out.println("Descuento: " + descuentocliente + "%");
+										// Recogemos el importe a pagar "cesta.getImporteCompra()"
+										System.out.println("Total a pagar por " + tipoleche + ": " + cesta.getImporteCompra() + "€");
+									}
+								}
+								else {
+
+									System.out.println("El código de barras no pertenece al producto seleccionado");
+								}
 							}
 							linea3 = br3.readLine();
 						}
-
-						System.out.println();
-						double total = (cantidad * euro);
-						System.out.println(" ------ Has pedido ------");
-						System.out.println("Tipo: " + camposSeparados3[0]);
-						System.out.println("Cantidad pedida: " + cantidad);
-						System.out.println("Euro por Unidad: " + euro + "€");
-						System.out.println("Total: " + total + "€");
-						System.out.println("Descuento: " + descuentocliente + "%");
-
-						// Enviamos al objeto "cesta" los valores "euro" y "descuentocliente" para calcular el importe
-						cesta.setImporteCompra(euro, descuentocliente);
-
-						System.out.println();
-						// Recogemos el importe a pagar "cesta.getImporteCompra()"
-						System.out.println("Total a pagar por " + camposSeparados3[0] + ": " + cesta.getImporteCompra() + "€");
 
 						System.out.println("\n ------ ------ ------ ------ ------ ------\n");
 						System.out.print("¿Desea pedir algo más S/N? ");
@@ -570,7 +784,9 @@ public class Almacen {
 					} catch(IOException e) {
 						System.out.println("Error E/S: "+e);
 					}
-				} while (mas == 'S' || mas == 's');
+				} while (mas == 'S' || mas == 's'); {
+					System.out.println("Gracias por su visita.");
+				}
 				break;
 			}
 

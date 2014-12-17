@@ -1,0 +1,6 @@
+Manzana, 0001, Manzana1, Barcelona, Verde, 2.5, uno, Q8537427J, Espanya, Barcelona, Barcelona, calle2, 6, R, 16666
+Manzana, 0002, Manzana2, Barcelona, Verde, 3.0, uno, Q8537427J, Espanya, Barcelona, Barcelona, calle2, 6, R, 16666
+Lechuga, 1001, Lechuga1, Napoles, Verde, 3.5, dos, W2637246F, Italia, Napoles, Napoles, calle6, 2, I, 02333
+Lechuga, 1002, Lechuga2, Napoles, Verde, 4.0, dos, W2637246F, Italia, Napoles, Napoles, calle6, 2, I, 02333
+Leche, 2001, Leche1, Sevilla, 4.5, tres, E41788845, Espanya, Sevilla, Sevilla, calle7, 1, O, 72589
+Leche, 2002, Leche2, Sevilla, 5.0, tres, E41788845, Espanya, Sevilla, Sevilla, calle7, 1, O, 72589
